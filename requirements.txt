@@ -1,0 +1,8 @@
+pyspark==3.5.0
+kafka-python==2.0.2
+requests==2.31.0
+pandas==2.1.0
+matplotlib==3.8.0
+folium==0.15.0
+cassandra-driver==3.28.0
+python-dotenv==1.0.0
