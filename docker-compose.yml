@@ -23,7 +23,7 @@ services:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
-      KAFKA_LOG_RETENTION_HOURS: 24
+      KAFKA_LOG_RETENTION_HOURS: 168
 
   cassandra:
     image: cassandra:4.1
@@ -34,6 +34,18 @@ services:
       - CASSANDRA_CLUSTER_NAME=seismic-cluster
     volumes:
       - cassandra_data:/var/lib/cassandra
-
+  hbase:
+      image: dajobe/hbase:latest
+      container_name: seismic-hbase
+      ports:
+        - "16000:16000"
+        - "16010:16010"
+        - "16020:16020"
+        - "16030:16030"
+      environment:
+        - HBASE_CONF_hbase_cluster_distributed=false
+      volumes:
+        - hbase_data:/data
 volumes:
   cassandra_data:
+  hbase_data:
